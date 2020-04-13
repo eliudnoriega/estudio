@@ -1,0 +1,11 @@
+app-custon-sinedav {
+  display: flex;
+  flex: 1 0 auto;
+  min-width: 400px;
+
+  > .nav {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+}

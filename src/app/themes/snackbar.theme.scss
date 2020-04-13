@@ -1,0 +1,17 @@
+// colores para los diferentes tipos de snackbar
+@mixin snackbar-theme($theme) {
+    $primary: mat-color(map-get($theme, primary));
+    $primary-text: mat-color(map-get($theme, primary), default-contrast);
+    $warn: mat-color(map-get($theme, warn));
+    $warn-text: mat-color(map-get($theme, warn), default-contrast);
+
+    .snackbar-success {
+        color: $primary-text;
+        background: $primary;
+    }
+
+    .snackbar-error {
+        color: $warn-text;
+        background: $warn;
+    }
+}

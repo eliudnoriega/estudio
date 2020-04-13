@@ -22,13 +22,27 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import {PortalModule} from '@angular/cdk/portal';
+import {CustonSinedavComponent} from './components/custon-sinedav/custon-sinedav.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {AgGridModule} from '@ag-grid-community/angular';
+import {LayoutModule} from '@angular/cdk/layout';
+import {AgGridComponentModule} from '@components/ag-grid/ag-grid-component.module';
+import {AgGridIconButtonActionComponent} from '@components/ag-grid/ag-grid-icon-button-action.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
     ProductsListComponent,
-    ProductComponent
+    ProductComponent,
+    CustonSinedavComponent
   ],
   imports: [
     BrowserModule,
@@ -46,12 +60,27 @@ import {PortalModule} from '@angular/cdk/portal';
     MatSlideToggleModule,
     MatTableModule,
     MatTabsModule,
-    PortalModule
+    PortalModule,
+    MatToolbarModule,
+    MatIconModule,
+    FlexLayoutModule,
+    FlexModule,
+    LayoutModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    AgGridModule.withComponents([]),
+    AgGridComponentModule
   ],
   providers: [
     ProductService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    CustonSinedavComponent,
+    AgGridIconButtonActionComponent
+  ]
 })
 export class AppModule {
 }

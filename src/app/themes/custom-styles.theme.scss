@@ -1,0 +1,92 @@
+// colores para los diferentes tipos de snackbar
+@mixin custom-styles-theme($theme) {
+    $primary: mat-color(map-get($theme, primary));
+    $primary-text: mat-color(map-get($theme, primary), default-contrast);
+    $warn: mat-color(map-get($theme, warn));
+    $warn-text: mat-color(map-get($theme, warn), default-contrast);
+
+    .colors-red {
+        color: #c62828;
+    }
+
+    .mat-select-search-input {
+        padding: 10px;
+        width: 100%;
+    }
+
+    .mat-dialog-without-padding {
+        .mat-dialog-container {
+            padding: 0;
+        }
+    }
+
+    .mat-ticket-dialog-without-padding {
+        .mat-dialog-container {
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+    }
+
+    .pdf-viewer-dialog-container {
+        width: 90%;
+        height: 90%;
+
+        .mat-dialog-container {
+            padding: 0;
+            overflow-x: hidden;
+
+            .mat-dialog-content {
+                margin: 0;
+                padding: 0;
+                max-height: none;
+            }
+        }
+    }
+
+    @keyframes fading-animation-tickets {
+        0% {
+            opacity: .1;
+        }
+
+        50% {
+            opacity: .2;
+        }
+
+        100% {
+            opacity: .1;
+        }
+    }
+
+    .min-width-zero {
+        min-width: 0;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+
+    .ticket-dialog-search-container {
+        background-color: white;
+        height: 32px;
+        width: 100%;
+        display: flex;
+        border-radius: 5px;
+        flex-direction: row;
+        align-items: center;
+
+        mat-icon {
+            margin-left: 5px;
+            color: #757575;
+        }
+
+        input {
+            padding: 0;
+            margin-left: 5px;
+            margin-right: 5px;
+            width: 100%;
+        }
+    }
+
+}

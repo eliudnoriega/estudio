@@ -1,1 +1,36 @@
-<p>product works!</p>
+<div fxFlex style="padding: 15px">
+  <form fxLayout="column" fxFlex [formGroup]="form">
+    <div fxLayout="row" fxFlex>
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Nombre del Producto</mat-label>
+        <input matInput formControlName="name" required>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxFlex>
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Categoria del Producto</mat-label>
+        <input matInput formControlName="category" required>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxFlex>
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Ubicacion del Producto</mat-label>
+        <input matInput formControlName="location" required>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxFlex>
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Precio del Producto</mat-label>
+        <input matInput formControlName="price" type="number" required>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxFlex fxLayoutAlign="space-around center">
+      <button mat-button color="primary" [disabled]="form.invalid" (click)="saveForm()">
+        Guardar Registro
+      </button>
+      <button mat-button color="primary" (click)="resetForm()">
+        Borrar Registro
+      </button>
+    </div>
+  </form>
+</div>
