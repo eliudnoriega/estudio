@@ -3,6 +3,8 @@ import {CommonModule} from '@angular/common';
 import {AgGridIconButtonActionComponent} from '@components/ag-grid/ag-grid-icon-button-action.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {FormsModule} from '@angular/forms';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -10,7 +12,9 @@ import {MatButtonModule} from '@angular/material/button';
   imports: [
     CommonModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule,
+    MatTooltipModule
   ],
   exports: [
     AgGridIconButtonActionComponent
