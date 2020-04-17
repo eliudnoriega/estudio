@@ -1,7 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 @import 'app/themes/snackbar.theme';
+@import "app/themes/custom-theme";
 
 @import "./node_modules/@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
 @import "./node_modules/@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
