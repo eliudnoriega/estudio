@@ -1,14 +1,13 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Product} from '@models/product';
 import {ProductService} from '../../../services/product.service';
 import {MenuModule} from '@ag-grid-enterprise/menu';
 import {ColumnsToolPanelModule} from '@ag-grid-enterprise/column-tool-panel';
 import {InfiniteRowModelModule} from '@ag-grid-community/infinite-row-model';
 import {ClientSideRowModelModule} from '@ag-grid-community/client-side-row-model';
 import {GridApi} from '@ag-grid-community/core';
-import {AgGridIconButtonActionComponent} from '@components/ag-grid/ag-grid-icon-button-action.component';
-import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
+import {Product} from '../../../models/product';
+import {AgGridIconButtonActionComponent} from '../../ag-grid/ag-grid-icon-button-action.component';
 
 @Component({
   selector: 'app-products-list',

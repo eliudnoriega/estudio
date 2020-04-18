@@ -1,34 +1,41 @@
-import {Component, OnInit} from '@angular/core';
-import {UserService} from './services/user.service';
-import {Router} from '@angular/router';
+import {
+  Component,
+  OnInit,
+  Renderer2,
+  HostListener,
+  Inject
+} from "@angular/core";
+import { Location } from "@angular/common";
+import { DOCUMENT } from "@angular/common";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit {
-  title = 'estudio';
-  currentUser: any;
-
   constructor(
-    private userService: UserService,
-    private router: Router
-  ) {
-
-  }
-
-  ngOnInit(): void {
-    this.userService.auth.authState.subscribe(user => {
-      this.currentUser = user;
-      if (!this.currentUser) {
-        this.router.navigate(['login']);
+    private renderer: Renderer2,
+    public location: Location,
+    @Inject(DOCUMENT) document
+  ) {}
+  @HostListener("window:scroll", ["$event"])
+  onWindowScroll(e) {
+    if (window.pageYOffset > 100) {
+      var element = document.getElementById("navbar-top");
+      if (element) {
+        element.classList.remove("navbar-transparent");
+        element.classList.add("bg-danger");
       }
-    });
+    } else {
+      var element = document.getElementById("navbar-top");
+      if (element) {
+        element.classList.add("navbar-transparent");
+        element.classList.remove("bg-danger");
+      }
+    }
   }
-
-  logout(): void {
-    this.userService.logout();
+  ngOnInit() {
+    this.onWindowScroll(event);
   }
-
 }

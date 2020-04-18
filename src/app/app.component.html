@@ -1,9 +1,1 @@
-<div class="container">
-  <mat-sidenav-container fxLayout="column" fxLayoutAlign="center center">
-    <mat-sidenav opened mode="side" *ngIf="currentUser">
-      <app-custon-sinedav></app-custon-sinedav>
-    </mat-sidenav>
-    <app-products fxFlex *ngIf="currentUser"></app-products>
-  </mat-sidenav-container>
-</div>
-
+<router-outlet></router-outlet>

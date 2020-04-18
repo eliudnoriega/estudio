@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductService} from '../../../services/product.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Product} from '@models/product';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
+import {Product} from '../../../models/product';
 
 @Component({
   selector: 'app-product',
