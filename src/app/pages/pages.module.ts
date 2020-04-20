@@ -45,6 +45,8 @@ import {AgGridComponentModule} from '../components/ag-grid/ag-grid-component.mod
 import {CustonSinedavComponent} from '../components/custon-sinedav/custon-sinedav.component';
 import {AgGridIconButtonActionComponent} from '../components/ag-grid/ag-grid-icon-button-action.component';
 import {ProductService} from '../services/product.service';
+import {LoginModule} from '../components/login/login.module';
+import {SurveyEditModule} from '../components/survey/survey-edit/survey-edit.module';
 
 @NgModule({
   imports: [
@@ -84,6 +86,8 @@ import {ProductService} from '../services/product.service';
     MatSnackBarModule,
     AgGridModule.withComponents([]),
     AgGridComponentModule,
+    LoginModule,
+    SurveyEditModule,
   ],
   declarations: [
     IndexComponent,

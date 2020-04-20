@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import noUiSlider from "nouislider";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import noUiSlider from 'nouislider';
+import {UserService} from '../../services/user.service';
 
 @Component({
-  selector: "app-index",
-  templateUrl: "index.component.html"
+  selector: 'app-index',
+  templateUrl: 'index.component.html'
 })
 export class IndexComponent implements OnInit, OnDestroy {
   isCollapsed = true;
@@ -13,15 +14,20 @@ export class IndexComponent implements OnInit, OnDestroy {
   date = new Date();
   pagination = 3;
   pagination1 = 1;
-  constructor() {}
+  currentUser: any;
+
+  constructor(
+    private userService: UserService
+  ) { }
+
   scrollToDownload(element: any) {
-    element.scrollIntoView({ behavior: "smooth" });
+    element.scrollIntoView({ behavior: 'smooth' });
   }
   ngOnInit() {
-    var body = document.getElementsByTagName("body")[0];
-    body.classList.add("index-page");
+    const body = document.getElementsByTagName('body')[0];
+    body.classList.add('index-page');
 
-    var slider = document.getElementById("sliderRegular");
+    const slider = document.getElementById('sliderRegular');
 
     noUiSlider.create(slider, {
       start: 40,
@@ -32,7 +38,7 @@ export class IndexComponent implements OnInit, OnDestroy {
       }
     });
 
-    var slider2 = document.getElementById("sliderDouble");
+    const slider2 = document.getElementById('sliderDouble');
 
     noUiSlider.create(slider2, {
       start: [20, 60],
@@ -42,9 +48,19 @@ export class IndexComponent implements OnInit, OnDestroy {
         max: 100
       }
     });
+
+    this.userService.auth.authState.subscribe(user => {
+      this.currentUser = user;
+    });
   }
+
+  logout(): void {
+    this.userService.logout();
+  }
+
   ngOnDestroy() {
-    var body = document.getElementsByTagName("body")[0];
-    body.classList.remove("index-page");
+    const body = document.getElementsByTagName('body')[0];
+    body.classList.remove('index-page');
   }
+
 }

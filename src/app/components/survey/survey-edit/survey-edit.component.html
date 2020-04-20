@@ -1,1 +1,73 @@
-<p>survey-edit works!</p>
+<div class="card card-register" style="width: 1200px">
+  <div class="card-header">
+    <h4 class="card-title" style="background: url('assets/img/square1-red.png');">Registrar Encuesta</h4>
+  </div>
+  <div class="card-body">
+    <mat-vertical-stepper [linear]="isLinear" #stepper style="background: transparent">
+      <mat-step [stepControl]="form">
+        <form fxLayout="column" fxFlex [formGroup]="form" style="margin 15 px">
+          <ng-template matStepLabel style="color: white">Datos Generales</ng-template>
+          <div fxLayout="row" fxFlex>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Nombre del entrevistado</mat-label>
+              <input matInput formControlName="nombreEntrevistado" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Apellidos de la familia nuclear</mat-label>
+              <input matInput formControlName="appellidosFamiliaNuclear" required>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxFlex>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Nombre del sector </mat-label>
+              <input matInput formControlName="nombreSector" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Nombre de la comunidad</mat-label>
+              <input matInput formControlName="nombreComunidad" required>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxFlex>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Referencia del domicilio </mat-label>
+              <input matInput formControlName="referenciaDomicilio" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Número de Teléfono</mat-label>
+              <input matInput formControlName="noTelefono" type="number" required>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxFlex>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Compañia Telefonica </mat-label>
+              <mat-select formControlName="companiaTelefonica">
+                <mat-option *ngFor="let r of companiasTelefonicas">{{r.text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Número de Teléfono</mat-label>
+              <input matInput formControlName="noTelefono" type="number" required>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxFlex fxLayoutAlign="space-around center">
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
+            <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="saveForm()">
+              Guardar Registro
+            </button>
+            <button mat-raised-button color="primary" (click)="resetForm()">
+              Borrar Registro
+            </button>
+          </div>
+        </form>
+      </mat-step>
+    </mat-vertical-stepper>
+  </div>
+  <div class="card-footer">
+    <a
+      class="btn btn-danger btn-round btn-lg"
+      href="javascript:void(0)"
+    >
+      Guardar Encuesta
+    </a>
+  </div>
+</div>

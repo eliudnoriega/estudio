@@ -1,21 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SurveyEditComponent } from './survey-edit.component';
-import {RouterModule, Routes} from '@angular/router';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FlexModule} from '@angular/flex-layout';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSelectModule} from '@angular/material/select';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: SurveyEditComponent,
-    resolve: {}
-  },
-];
 
 @NgModule({
   declarations: [SurveyEditComponent],
+  exports: [
+    SurveyEditComponent
+  ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    FlexModule,
+    MatInputModule,
+    MatButtonModule,
+    MatStepperModule,
+    MatSelectModule
   ]
 })
 export class SurveyEditModule { }

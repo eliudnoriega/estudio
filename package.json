@@ -56,12 +56,8 @@
     "blk design system",
     "blk design system angular"
   ],
-  "author": "Creative Tim <hello@creative-tim.com> (https://www.creative-tim.com/)",
+  "author": "eliudnoriega@gmail.com",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/creativetimofficial/blk-design-system-angular/issues"
-  },
-  "homepage": "https://demos.creative-tim.com/blk-design-system-angular/",
   "private": false,
   "dependencies": {
     "@angular/animations": "9.0.6",
