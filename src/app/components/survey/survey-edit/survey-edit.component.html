@@ -3,9 +3,15 @@
     <h4 class="card-title" style="background: url('assets/img/square1-red.png');">Registrar Encuesta</h4>
   </div>
   <div class="card-body">
+    <div fxLayoutAlign="center center" style="font-size: 15px">
+      <mat-form-field appearance="outline">
+        <mat-label style="font-size: 15px">Número de Boleta</mat-label>
+      <input matInput [(ngModel)]="numeroBoleta" type="number"/>
+      </mat-form-field>
+    </div>
     <mat-vertical-stepper [linear]="isLinear" #stepper style="background: transparent">
       <mat-step [stepControl]="form">
-        <form fxLayout="column" fxFlex [formGroup]="form" style="margin 15 px">
+        <form fxLayout="column" fxFlex [formGroup]="form" style="margin: 15px">
           <ng-template matStepLabel style="color: white">Datos Generales</ng-template>
           <div fxLayout="row" fxFlex>
             <mat-form-field appearance="outline" fxFlex>
@@ -14,7 +20,7 @@
             </mat-form-field>
             <mat-form-field appearance="outline" fxFlex>
               <mat-label>Apellidos de la familia nuclear</mat-label>
-              <input matInput formControlName="appellidosFamiliaNuclear" required>
+              <input matInput formControlName="apellidosFamiliaNuclear" required>
             </mat-form-field>
           </div>
           <div fxLayout="row" fxFlex>
@@ -44,14 +50,10 @@
                 <mat-option *ngFor="let r of companiasTelefonicas">{{r.text}}</mat-option>
               </mat-select>
             </mat-form-field>
-            <mat-form-field appearance="outline" fxFlex>
-              <mat-label>Número de Teléfono</mat-label>
-              <input matInput formControlName="noTelefono" type="number" required>
-            </mat-form-field>
           </div>
           <div fxLayout="row" fxFlex fxLayoutAlign="space-around center">
-            <button mat-raised-button color="primary" matStepperNext>Next</button>
-            <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="saveForm()">
+            <button mat-raised-button color="primary" matStepperNext [disabled]="form.invalid || numeroBoleta<=0">Next</button>
+            <button mat-raised-button color="primary" [disabled]="form.invalid || numeroBoleta<=0" (click)="saveForm()">
               Guardar Registro
             </button>
             <button mat-raised-button color="primary" (click)="resetForm()">

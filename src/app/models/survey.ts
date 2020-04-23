@@ -1,4 +1,8 @@
-export class Survey {
+export class SurveyModel {
   key: string;
-  noBoleta: number;
+  name: string;
+  surveyType: number;
+  directedPublic: string;
+  type?: string;
+  user?: string;
 }

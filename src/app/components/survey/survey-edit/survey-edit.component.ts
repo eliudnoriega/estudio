@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SurveyService} from '../../../services/survey.service';
-import {Survey} from '../../../models/survey';
+import {SurveyModel} from '../../../models/survey';
 import {COMPANIAS_TELEFONICAS} from '../../../constants/aplication';
 
 @Component({
@@ -10,13 +10,15 @@ import {COMPANIAS_TELEFONICAS} from '../../../constants/aplication';
   styleUrls: ['./survey-edit.component.scss']
 })
 export class SurveyEditComponent implements OnInit {
+  formNumber: FormGroup;
   form: FormGroup;
   isLinear = false;
+  numeroBoleta = 0;
   companiasTelefonicas: Array<any>;
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly surverService: SurveyService
+    private readonly surveyService: SurveyService
   ) {
   }
 
@@ -27,17 +29,20 @@ export class SurveyEditComponent implements OnInit {
 
   resetForm(): void {
     this.form = this.formBuilder.group({
-      name: [''],
-      category: [''],
-      location: [''],
-      price: ['']
+      name: ['', Validators.required],
+      category: ['', Validators.required],
+      location: ['', Validators.required],
+      price: ['', Validators.required]
+    });
+    this.formNumber = this.formBuilder.group({
+      numeroBoleta: ['', Validators.required]
     });
     this.form.reset();
-    this.surverService.changeSurvey(new Survey());
+    this.surveyService.changeSurvey(new SurveyModel());
   }
 
   saveForm(): void {
-
+    console.log('hola');
   }
 
 }

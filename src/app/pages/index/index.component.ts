@@ -7,7 +7,6 @@ import {UserService} from '../../services/user.service';
   templateUrl: 'index.component.html'
 })
 export class IndexComponent implements OnInit, OnDestroy {
-  isCollapsed = true;
   focus;
   focus1;
   focus2;
@@ -52,10 +51,6 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.userService.auth.authState.subscribe(user => {
       this.currentUser = user;
     });
-  }
-
-  logout(): void {
-    this.userService.logout();
   }
 
   ngOnDestroy() {

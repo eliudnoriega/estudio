@@ -1,0 +1,37 @@
+<section class="section section-lg section-coins">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let x of surveyList">
+        <div class="card card-coin card-plain">
+          <div class="card-header">
+            <img class="img-center img-fluid" src="assets/img/libro.png"/>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <h4 class="text-uppercase">{{x.name}}</h4>
+                <span> {{x.type}} </span>
+                <hr class="line-primary"/>
+              </div>
+            </div>
+            <div class="row" style="height: 80px">
+              <ul class="list-group">
+                <li class="list-group-item">{{x.directedPublic.substr(0,150)}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-footer text-center">
+            <button class="btn btn-primary btn-simple" (click)="editSurvey(x)">Editar</button>
+            <button class="btn btn-primary btn-simple" (click)="editSurvey(x)">Agregar Preguntas</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <button type="button" class="btn btn-primary btn-icon btn-round mr-1 btn-add" title="Agregar Encuesta/Evaluación" (click)="editSurvey(null)">
+      <i class="tim-icons icon-simple-add"></i>
+    </button>
+  </div>
+</section>

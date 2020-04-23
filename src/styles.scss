@@ -4,3 +4,10 @@
 
 @import "./node_modules/@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
 @import "./node_modules/@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
+
+.mat-dialog-without-padding {
+  .mat-dialog-container {
+    padding: 0;
+    overflow-x: hidden;
+  }
+}

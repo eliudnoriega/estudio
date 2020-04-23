@@ -46,7 +46,8 @@ import {CustonSinedavComponent} from '../components/custon-sinedav/custon-sineda
 import {AgGridIconButtonActionComponent} from '../components/ag-grid/ag-grid-icon-button-action.component';
 import {ProductService} from '../services/product.service';
 import {LoginModule} from '../components/login/login.module';
-import {SurveyEditModule} from '../components/survey/survey-edit/survey-edit.module';
+import {SurveyModule} from '../components/survey/survey.module';
+import {LayoutsModule} from '../components/layout/layouts.module';
 
 @NgModule({
   imports: [
@@ -87,7 +88,8 @@ import {SurveyEditModule} from '../components/survey/survey-edit/survey-edit.mod
     AgGridModule.withComponents([]),
     AgGridComponentModule,
     LoginModule,
-    SurveyEditModule,
+    SurveyModule,
+    LayoutsModule,
   ],
   declarations: [
     IndexComponent,

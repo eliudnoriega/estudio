@@ -1,0 +1,48 @@
+<app-layout-dialog
+  [showTitleText]="true"
+  [dialogTitle]="title"
+  [showCancelButton]="true"
+  [showActionButton]="true"
+  [showDialogActions]="true"
+  [loading]="loading"
+  [cancelActionButtonDisabled]="false"
+  [actionButtonDisabled]="form.invalid || loading"
+  (dialogActionButtonOutput)="save()"
+  (dialogCancelButtonOutput)="onCancel()"
+>
+  <div fxFlex>
+    <form fxLayout="column" [formGroup]="form">
+      <div fxLayout="row" fxFlex>
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Nombre de Encuesta</mat-label>
+          <input matInput formControlName="name" required>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxFlex>
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Tipo de Encuesta</mat-label>
+          <mat-select formControlName="surveyType">
+            <mat-option *ngFor="let r of surveyTypes" [value]="r.value">{{r.text}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxFlex>
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>A quienes va dirigida</mat-label>
+          <textarea matInput formControlName="directedPublic" required></textarea>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxFlex fxLayoutAlign="center center">
+        <re-captcha
+          (resolved)="resolved($event)"
+          required
+          siteKey="6Le5Ge0UAAAAAAWZm5jYWea8KsbnqR0ssYIo9RSP"
+        ></re-captcha>
+        <mat-form-field appearance="outline" fxFlex style="display: none">
+          <mat-label>captcha</mat-label>
+          <input matInput formControlName="captcha" required>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+</app-layout-dialog>
