@@ -23,7 +23,6 @@ import { RegisterpageComponent } from "./examples/registerpage/registerpage.comp
 import { LandingpageComponent } from "./examples/landingpage/landingpage.component";
 import {ProductsComponent} from '../components/products/products.component';
 import {ProductComponent} from '../components/products/product/product.component';
-import {ProductsListComponent} from '../components/products/products-list/products-list.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
@@ -48,6 +47,7 @@ import {ProductService} from '../services/product.service';
 import {LoginModule} from '../components/login/login.module';
 import {SurveyModule} from '../components/survey/survey.module';
 import {LayoutsModule} from '../components/layout/layouts.module';
+import {QuestionService} from '../services/question.service';
 
 @NgModule({
   imports: [
@@ -98,7 +98,6 @@ import {LayoutsModule} from '../components/layout/layouts.module';
     LandingpageComponent,
     ProductsComponent,
     ProductComponent,
-    ProductsListComponent,
     CustonSinedavComponent
   ],
   exports: [
@@ -107,7 +106,7 @@ import {LayoutsModule} from '../components/layout/layouts.module';
     RegisterpageComponent,
     LandingpageComponent
   ],
-  providers: [ProductService],
+  providers: [ProductService, QuestionService],
   entryComponents: [
     CustonSinedavComponent,
     AgGridIconButtonActionComponent

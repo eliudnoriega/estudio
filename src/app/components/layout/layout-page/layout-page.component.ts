@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {CdkPortal, PortalHostDirective, TemplatePortal} from '@angular/cdk/portal';
 
 @Component({
   selector: 'app-layout-page',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutPageComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild(CdkPortal, {static: true})
+  templatePortal: TemplatePortal;
+
+  @ViewChild(PortalHostDirective, {static: true})
+  host: PortalHostDirective;
+
+  @Input()
+  isNotHome = false;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+    this.host.attachTemplatePortal(this.templatePortal);
   }
 
 }

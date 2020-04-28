@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from '../../../services/user.service';
 
 @Component({
@@ -8,8 +8,12 @@ import {UserService} from '../../../services/user.service';
 })
 export class LayoutMenuComponent implements OnInit {
 
+  @Input()
+  toBack = false;
+
   isCollapsed = true;
   currentUser: any;
+
   constructor(
     private readonly userService: UserService
   ) {

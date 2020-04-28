@@ -7,7 +7,7 @@ import {IndexComponent} from './pages/index/index.component';
 import {ProfilepageComponent} from './pages/examples/profilepage/profilepage.component';
 import {RegisterpageComponent} from './pages/examples/registerpage/registerpage.component';
 import {LandingpageComponent} from './pages/examples/landingpage/landingpage.component';
-import {AddSurveyComponent} from './components/survey/add-survey/add-survey.component';
+import {AddQuestionsComponent} from './components/survey/add-questions/add-questions.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'profile', component: ProfilepageComponent },
   {path: 'register', component: RegisterpageComponent },
   {path: 'landing', component: LandingpageComponent },
-  {path: 'addSurvey', component: AddSurveyComponent}
+  {path: 'addQuestions/:key', component: AddQuestionsComponent}
 ];
 
 @NgModule({

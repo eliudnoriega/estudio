@@ -14,13 +14,21 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {LayoutDialogComponent} from '../layout/layout-dialog/layout-dialog.component';
 import {LayoutsModule} from '../layout/layouts.module';
 import {RecaptchaModule} from 'ng-recaptcha';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { AddQuestionsComponent } from './add-questions/add-questions.component';
+import {ProductsListComponent} from '../products/products-list/products-list.component';
+import {AgGridModule} from '@ag-grid-community/angular';
+import { DialogAddQuestionComponent } from './add-questions/dialog-add-question/dialog-add-question.component';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
-  declarations: [SurveyEditComponent, SurveyComponent, AddSurveyComponent],
+  declarations: [SurveyEditComponent, SurveyComponent, AddSurveyComponent, AddQuestionsComponent, ProductsListComponent, DialogAddQuestionComponent],
   exports: [
     SurveyEditComponent,
-    SurveyComponent,AddSurveyComponent
+    SurveyComponent,AddSurveyComponent, ProductsListComponent, DialogAddQuestionComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +43,12 @@ import {RecaptchaModule} from 'ng-recaptcha';
     MatDialogModule,
     LayoutsModule,
     LayoutsModule,
-    RecaptchaModule
+    RecaptchaModule,
+    MatCheckboxModule,
+    MatSlideToggleModule,
+    MatChipsModule,
+    MatIconModule,
+    AgGridModule.withComponents([]),
   ],
   entryComponents:[
     LayoutDialogComponent

@@ -9,8 +9,8 @@ import {UserService} from './user.service';
 })
 export class SurveyService {
   surveyList: AngularFireList<any>;
-  selectedSurvey: SurveyModel = new SurveyModel();
   private readonly currentSurveySubject = new BehaviorSubject<SurveyModel>(null);
+  private readonly currentSurveyListSubject = new BehaviorSubject<Array<SurveyModel>>(null);
 
   constructor(
     private firebase: AngularFireDatabase,
@@ -27,6 +27,7 @@ export class SurveyService {
       name: survey.name,
       surveyType: survey.surveyType,
       directedPublic: survey.directedPublic,
+      disabledSurvey: survey.disabledSurvey,
       user: this.userService.currentUser.email
     });
   }
@@ -36,7 +37,10 @@ export class SurveyService {
       name: survey.name,
       surveyType: survey.surveyType,
       directedPublic: survey.directedPublic,
-      user: this.userService.currentUser.email
+      disabledSurvey: survey.disabledSurvey,
+      user: this.userService.currentUser.email,
+      questions: survey.questions ? survey.questions : [],
+      key: survey.key
     });
   }
 
@@ -46,5 +50,15 @@ export class SurveyService {
 
   public get currentSurvey(): Observable<SurveyModel> {
     return this.currentSurveySubject.asObservable();
+  }
+
+  public get currentSurveyList(): Observable<Array<SurveyModel>> {
+    return this.currentSurveyListSubject.asObservable();
+  }
+
+  getByKey(key: string): any {
+    return this.firebase.list('survey', ref => {
+      return ref.orderByChild('key').equalTo(key);
+    });
   }
 }

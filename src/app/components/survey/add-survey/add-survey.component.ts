@@ -44,6 +44,7 @@ export class AddSurveyComponent implements OnInit, OnDestroy {
             name: [survey.name],
             surveyType: [survey.surveyType],
             directedPublic: [survey.directedPublic],
+            disabledSurvey: [survey.disabledSurvey],
             captcha: ['', Validators.required]
           });
           this.title = 'Actualizar Encuesta';
@@ -56,9 +57,9 @@ export class AddSurveyComponent implements OnInit, OnDestroy {
       name: ['', Validators.required],
       surveyType: ['', Validators.required],
       directedPublic: ['', Validators.required],
+      disabledSurvey: [true],
       captcha: ['', Validators.required],
     });
-    this.form.reset();
     if (!this.data) {
       this.surveyService.changeSurvey(new SurveyModel());
     }

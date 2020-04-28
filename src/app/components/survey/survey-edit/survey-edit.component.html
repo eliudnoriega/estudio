@@ -1,4 +1,4 @@
-<div class="card card-register" style="width: 1200px">
+<div fxFlex class="card card-register">
   <div class="card-header">
     <h4 class="card-title" style="background: url('assets/img/square1-red.png');">Registrar Encuesta</h4>
   </div>
@@ -6,12 +6,12 @@
     <div fxLayoutAlign="center center" style="font-size: 15px">
       <mat-form-field appearance="outline">
         <mat-label style="font-size: 15px">Número de Boleta</mat-label>
-      <input matInput [(ngModel)]="numeroBoleta" type="number"/>
+        <input matInput [(ngModel)]="numeroBoleta" type="number"/>
       </mat-form-field>
     </div>
     <mat-vertical-stepper [linear]="isLinear" #stepper style="background: transparent">
       <mat-step [stepControl]="form">
-        <form fxLayout="column" fxFlex [formGroup]="form" style="margin: 15px">
+        <form fxLayout="column" fxFlex [formGroup]="form" style="margin: 15px;">
           <ng-template matStepLabel style="color: white">Datos Generales</ng-template>
           <div fxLayout="row" fxFlex>
             <mat-form-field appearance="outline" fxFlex>
@@ -25,7 +25,7 @@
           </div>
           <div fxLayout="row" fxFlex>
             <mat-form-field appearance="outline" fxFlex>
-              <mat-label>Nombre del sector </mat-label>
+              <mat-label>Nombre del sector</mat-label>
               <input matInput formControlName="nombreSector" required>
             </mat-form-field>
             <mat-form-field appearance="outline" fxFlex>
@@ -35,7 +35,7 @@
           </div>
           <div fxLayout="row" fxFlex>
             <mat-form-field appearance="outline" fxFlex>
-              <mat-label>Referencia del domicilio </mat-label>
+              <mat-label>Referencia del domicilio</mat-label>
               <input matInput formControlName="referenciaDomicilio" required>
             </mat-form-field>
             <mat-form-field appearance="outline" fxFlex>
@@ -45,14 +45,95 @@
           </div>
           <div fxLayout="row" fxFlex>
             <mat-form-field appearance="outline" fxFlex>
-              <mat-label>Compañia Telefonica </mat-label>
+              <mat-label>Compañia Telefonica</mat-label>
+              <mat-select formControlName="companiaTelefonica">
+                <mat-option *ngFor="let r of companiasTelefonicas">{{r.text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxFlex>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Compañia Telefonica</mat-label>
+              <mat-select formControlName="companiaTelefonica">
+                <mat-option *ngFor="let r of companiasTelefonicas">{{r.text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxFlex>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Compañia Telefonica</mat-label>
+              <mat-select formControlName="companiaTelefonica">
+                <mat-option *ngFor="let r of companiasTelefonicas">{{r.text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxFlex>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Compañia Telefonica</mat-label>
+              <mat-select formControlName="companiaTelefonica">
+                <mat-option *ngFor="let r of companiasTelefonicas">{{r.text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxFlex>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Compañia Telefonica</mat-label>
+              <mat-select formControlName="companiaTelefonica">
+                <mat-option *ngFor="let r of companiasTelefonicas">{{r.text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxFlex>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Compañia Telefonica</mat-label>
+              <mat-select formControlName="companiaTelefonica">
+                <mat-option *ngFor="let r of companiasTelefonicas">{{r.text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxFlex>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Compañia Telefonica</mat-label>
+              <mat-select formControlName="companiaTelefonica">
+                <mat-option *ngFor="let r of companiasTelefonicas">{{r.text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxFlex>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Compañia Telefonica</mat-label>
+              <mat-select formControlName="companiaTelefonica">
+                <mat-option *ngFor="let r of companiasTelefonicas">{{r.text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxFlex>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Compañia Telefonica</mat-label>
+              <mat-select formControlName="companiaTelefonica">
+                <mat-option *ngFor="let r of companiasTelefonicas">{{r.text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxFlex>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Compañia Telefonica</mat-label>
+              <mat-select formControlName="companiaTelefonica">
+                <mat-option *ngFor="let r of companiasTelefonicas">{{r.text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxFlex>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Compañia Telefonica</mat-label>
               <mat-select formControlName="companiaTelefonica">
                 <mat-option *ngFor="let r of companiasTelefonicas">{{r.text}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
           <div fxLayout="row" fxFlex fxLayoutAlign="space-around center">
-            <button mat-raised-button color="primary" matStepperNext [disabled]="form.invalid || numeroBoleta<=0">Next</button>
+            <button mat-raised-button color="primary" matStepperNext [disabled]="form.invalid || numeroBoleta<=0">Next
+            </button>
             <button mat-raised-button color="primary" [disabled]="form.invalid || numeroBoleta<=0" (click)="saveForm()">
               Guardar Registro
             </button>

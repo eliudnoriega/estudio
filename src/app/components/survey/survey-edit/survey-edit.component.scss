@@ -1,4 +1,7 @@
-
-::ng-deep .mat-step-header .mat-step-label.mat-step-label-active {
-  color: yellow;
+.card {
+  border-radius: 0px;
+  margin-bottom: 0px;
+}
+.card-header {
+  display: flex;
 }

@@ -1,0 +1,61 @@
+<app-layout-dialog
+  [showTitleText]="true"
+  [dialogTitle]="title"
+  [showCancelButton]="true"
+  [showActionButton]="true"
+  [showDialogActions]="true"
+  [loading]="loading"
+  [cancelActionButtonDisabled]="false"
+  [actionButtonDisabled]="form.invalid || loading"
+  (dialogActionButtonOutput)="save()"
+  (dialogCancelButtonOutput)="onCancel()"
+>
+  <div fxFlex>
+    <form fxLayout="column" [formGroup]="form">
+      <div fxLayout="row" fxFlex>
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Sección</mat-label>
+          <input matInput placeholder="General" formControlName="section" required>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxFlex>
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Pregunta</mat-label>
+          <input matInput formControlName="question" required>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxFlex>
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Tipo de Pregunta</mat-label>
+          <mat-select formControlName="questionType"  (selectionChange)="verifyPossibleAnswers()">
+            <mat-option *ngFor="let r of questionTypes" [value]="r.value">{{r.text}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxFlex *ngIf="possibleAnswers">
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Posibles Respuestas</mat-label>
+          <mat-chip-list #chipList aria-label="selection">
+            <mat-chip *ngFor="let r of possibleAnswersList" [selectable]="selectable"
+                      [removable]="removable" (removed)="removePossibleAnswer(r)">
+              {{r}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Agregar Respuesta..."
+                   [matChipInputFor]="chipList"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]="true"
+                   (matChipInputTokenEnd)="addPossibleAnswer($event)">
+          </mat-chip-list>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxFlex fxLayoutAlign="center center">
+        <re-captcha
+          (resolved)="resolved($event)"
+          required
+          siteKey="6Le5Ge0UAAAAAAWZm5jYWea8KsbnqR0ssYIo9RSP"
+        ></re-captcha>
+      </div>
+    </form>
+  </div>
+</app-layout-dialog>

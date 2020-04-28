@@ -6,6 +6,7 @@ import {Product} from '../../models/product';
 import {SurveyService} from '../../services/survey.service';
 import {SurveyModel} from '../../models/survey';
 import {SURVEY_TYPES} from '../../constants/aplication';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-survey',
@@ -19,7 +20,8 @@ export class SurveyComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private readonly productService: ProductService,
-    private readonly surveyService: SurveyService
+    private readonly surveyService: SurveyService,
+    private router: Router
   ) {
   }
 
@@ -42,7 +44,7 @@ export class SurveyComponent implements OnInit {
   editSurvey(survey: SurveyModel): void {
     this.surveyService.changeSurvey(survey);
     const dialogRef = this.dialog.open(AddSurveyComponent, {
-      height: '520px',
+      height: '535px',
       width: '600px',
       panelClass: 'mat-dialog-without-padding',
       data: survey
@@ -51,6 +53,11 @@ export class SurveyComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.surveyService.changeSurvey(new SurveyModel());
     });
+  }
+
+  addQuestions(survey: SurveyModel): void {
+    this.surveyService.changeSurvey(survey);
+    this.router.navigate(['addQuestions', survey.key]);
   }
 
 
