@@ -60,5 +60,10 @@ export class SurveyComponent implements OnInit {
     this.router.navigate(['addQuestions', survey.key]);
   }
 
+  surveyResponse(survey: SurveyModel): void {
+    this.surveyService.changeSurvey(survey);
+    this.router.navigate(['surveyResponse', survey.key]);
+  }
+
 
 }

@@ -8,6 +8,7 @@ import {UserService} from './user.service';
 export class QuestionService {
   questionsList: AngularFireList<any>;
   private readonly currentQuestionSubject = new BehaviorSubject<QuestionModel>(null);
+  private readonly sectionSubject = new BehaviorSubject<string>('');
 
   constructor(
     private firebase: AngularFireDatabase,
@@ -26,6 +27,7 @@ export class QuestionService {
       surveyKey: question.surveyKey,
       possibleAnswers: question.possibleAnswers,
       user: this.userService.currentUser.email,
+      required: question.required,
       section: question.section
     });
   }
@@ -38,6 +40,7 @@ export class QuestionService {
       possibleAnswers: question.possibleAnswers,
       user: this.userService.currentUser.email,
       key: question.key,
+      required: question.required,
       section: question.section
     });
   }
@@ -48,6 +51,18 @@ export class QuestionService {
 
   public get currentSurvey(): Observable<QuestionModel> {
     return this.currentQuestionSubject.asObservable();
+  }
+
+  changeSection(section: string): void {
+    this.sectionSubject.next(section);
+  }
+
+  public get currentSection(): Observable<string> {
+    return this.sectionSubject.asObservable();
+  }
+
+  deleteQuestion(key: string) {
+    this.questionsList.remove(key);
   }
 
   getBySurveyKey(key: string): any {

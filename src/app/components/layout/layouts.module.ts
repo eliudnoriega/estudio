@@ -12,11 +12,12 @@ import { LayoutMenuComponent } from './layout-menu/layout-menu.component';
 import {RouterModule} from '@angular/router';
 import {BsDropdownModule, CollapseModule} from 'ngx-bootstrap';
 import { LayoutFooterComponent } from './layout-footer/layout-footer.component';
+import {ConfirmationDialogComponent} from './confirmation-dialog/confirmation-dialog.component';
 
 
 
 @NgModule({
-  declarations: [LayoutDialogComponent, LayoutPageComponent, LayoutMenuComponent, LayoutFooterComponent],
+  declarations: [LayoutDialogComponent, LayoutPageComponent, LayoutMenuComponent, LayoutFooterComponent, ConfirmationDialogComponent],
   imports: [
     CommonModule,
     MatIconModule,
@@ -32,7 +33,8 @@ import { LayoutFooterComponent } from './layout-footer/layout-footer.component';
   exports: [
     LayoutDialogComponent,
     LayoutMenuComponent,
-    LayoutPageComponent
+    LayoutPageComponent,
+    ConfirmationDialogComponent
   ]
 })
 export class LayoutsModule { }

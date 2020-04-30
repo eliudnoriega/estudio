@@ -5,10 +5,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {FormsModule} from '@angular/forms';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {AgGridIconButtonActionComponent} from './ag-grid-icon-button-action.component';
+import {AgGridQuestionTypeComponent} from './ag-grid-question-type.component';
+import {AgGridQuestionPossibleAnswersComponent} from './ag-grid-question-possible-answers.component';
+import {AgGridIconComponent} from './ag-grid-icon.component';
 
 
 @NgModule({
-  declarations: [AgGridIconButtonActionComponent],
+  declarations: [AgGridIconButtonActionComponent, AgGridQuestionTypeComponent, AgGridQuestionPossibleAnswersComponent, AgGridIconComponent],
   imports: [
     CommonModule,
     MatIconModule,
@@ -17,7 +20,10 @@ import {AgGridIconButtonActionComponent} from './ag-grid-icon-button-action.comp
     MatTooltipModule
   ],
   exports: [
-    AgGridIconButtonActionComponent
+    AgGridIconButtonActionComponent,
+    AgGridQuestionTypeComponent,
+    AgGridQuestionPossibleAnswersComponent,
+    AgGridIconComponent
   ]
 })
 export class AgGridComponentModule {

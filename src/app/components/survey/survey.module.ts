@@ -22,10 +22,15 @@ import {AgGridModule} from '@ag-grid-community/angular';
 import { DialogAddQuestionComponent } from './add-questions/dialog-add-question/dialog-add-question.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { DialogIconComponent } from './add-questions/dialog-icon/dialog-icon.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatCardModule} from '@angular/material/card';
+import { SurveyResponseComponent } from './survey-response/survey-response.component';
 
 
 @NgModule({
-  declarations: [SurveyEditComponent, SurveyComponent, AddSurveyComponent, AddQuestionsComponent, ProductsListComponent, DialogAddQuestionComponent],
+  declarations: [SurveyEditComponent, SurveyComponent, AddSurveyComponent, AddQuestionsComponent, ProductsListComponent, DialogAddQuestionComponent, DialogIconComponent, SurveyResponseComponent],
   exports: [
     SurveyEditComponent,
     SurveyComponent,AddSurveyComponent, ProductsListComponent, DialogAddQuestionComponent
@@ -49,6 +54,9 @@ import {MatIconModule} from '@angular/material/icon';
     MatChipsModule,
     MatIconModule,
     AgGridModule.withComponents([]),
+    MatAutocompleteModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
   ],
   entryComponents:[
     LayoutDialogComponent

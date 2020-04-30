@@ -16,4 +16,6 @@ export class QuestionModel {
   possibleAnswers: string;
   surveyKey: string;
   section: string;
+  required: boolean;
+  type: string;
 }

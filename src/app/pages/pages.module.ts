@@ -48,6 +48,9 @@ import {LoginModule} from '../components/login/login.module';
 import {SurveyModule} from '../components/survey/survey.module';
 import {LayoutsModule} from '../components/layout/layouts.module';
 import {QuestionService} from '../services/question.service';
+import {AgGridQuestionTypeComponent} from '../components/ag-grid/ag-grid-question-type.component';
+import {AgGridQuestionPossibleAnswersComponent} from '../components/ag-grid/ag-grid-question-possible-answers.component';
+import {AgGridIconComponent} from '../components/ag-grid/ag-grid-icon.component';
 
 @NgModule({
   imports: [
@@ -109,7 +112,10 @@ import {QuestionService} from '../services/question.service';
   providers: [ProductService, QuestionService],
   entryComponents: [
     CustonSinedavComponent,
-    AgGridIconButtonActionComponent
+    AgGridIconButtonActionComponent,
+    AgGridQuestionTypeComponent,
+    AgGridQuestionPossibleAnswersComponent,
+    AgGridIconComponent
   ]
 })
 export class PagesModule {}

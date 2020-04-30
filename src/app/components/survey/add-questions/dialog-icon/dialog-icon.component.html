@@ -1,0 +1,60 @@
+<app-layout-dialog
+  [showTitleText]="true"
+  [dialogTitle]="title"
+  [showCancelButton]="true"
+  [showActionButton]="true"
+  [showDialogActions]="true"
+  [loading]="loading"
+  [cancelActionButtonDisabled]="false"
+  [actionButtonDisabled]="loading"
+  (dialogActionButtonOutput)="save()"
+  (dialogCancelButtonOutput)="onCancel()"
+>
+  <div id="productParameters" fxLayout="row">
+    <div class="center" fxLayout="column">
+      <mat-card class="content-card" fxLayout="column" style="height: 100%">
+        <div class="custom-list" >
+          <div class="search-list" fxLayout="row" fxLayoutAlign="start center">
+            <input fxFlex type="search" [(ngModel)]="searchIconInput" placeholder="{{'Buscar Icono'}}"
+                   (keydown.enter)="getAllIcons()"/>
+            <button class="md-icon-button" (click)="getAllIcons()">
+              <mat-icon>search</mat-icon>
+            </button>
+          </div>
+          <div fxLayout="row" style="flex-wrap: wrap !important; min-height: 400px" class="md-whiteframe-1dp"
+               *ngIf="iconArray.length > 0">
+            <div style="flex-wrap: wrap; display: flex">
+              <div fxLayout="column" style="width: 140px; padding: 8px; margin-bottom: 32px; text-align: center;"
+                   class="item ng-scope" [class]="{'selected': iconSelected === row}"
+                   fxLayoutAlign="start center" *ngFor="let row of iconArray" (click)="iconSelected = row">
+                <mat-icon [class]="{'warn': iconSelected === row}">{{row}}</mat-icon>
+                <div class="name secondary-text text-center ng-binding">
+                  {{row}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="iconArray.length === 0 && !isShowLoaderIcons" fxLayout="column" fxLayoutAlign="center center"
+               class="message-empty-list">
+            <div>{{'IMPORT.no_icons'}}</div>
+          </div>
+          <div fxLayout="column" fxLayoutAlign="center center" class="loader-content-list" *ngIf="isShowLoaderIcons">
+            <mat-spinner></mat-spinner>
+            <div>{{'IMPORT.loading_icons'}}...</div>
+          </div>
+        </div>
+        <div fxLayout="row">
+          <div paging
+               class="pageable-div center"
+               page="vm.paginationCompanies.pageNumber"
+               ul-class="pagination"
+               page-size="vm.paginationCompanies.pageSize"
+               hide-if-empty="true"
+               paging-action="vm.paginationCompanies.getPage(page)"
+               total="vm.paginationCompanies.totalElements">
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</app-layout-dialog>

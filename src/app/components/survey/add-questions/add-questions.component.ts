@@ -12,6 +12,11 @@ import {GridApi} from '@ag-grid-community/core';
 import {QuestionService} from '../../../services/question.service';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogAddQuestionComponent} from './dialog-add-question/dialog-add-question.component';
+import {AgGridIconButtonActionComponent} from '../../ag-grid/ag-grid-icon-button-action.component';
+import {AgGridQuestionTypeComponent} from '../../ag-grid/ag-grid-question-type.component';
+import {ConfirmationDialogComponent} from '../../layout/confirmation-dialog/confirmation-dialog.component';
+import {AgGridQuestionPossibleAnswersComponent} from '../../ag-grid/ag-grid-question-possible-answers.component';
+import {AgGridIconComponent} from '../../ag-grid/ag-grid-icon.component';
 
 @Component({
   selector: 'app-add-questions',
@@ -31,6 +36,10 @@ export class AddQuestionsComponent implements OnInit, OnDestroy {
     resizable: true,
   };
   rowSelection = 'multiple';
+  gridOptions = {
+    suppressPropertyNamesCheck: true,
+    rowHeight: 40
+  };
   columnDefs = [
     {
       headerName: 'Pregunta',
@@ -43,13 +52,63 @@ export class AddQuestionsComponent implements OnInit, OnDestroy {
       headerName: 'Tipo de pregunta',
       field: 'questionType',
       width: 200,
-      sortable: true
+      sortable: true,
+      cellStyle: {
+        'text-align': 'center',
+      },
+      cellRendererFramework: AgGridQuestionTypeComponent
     },
     {
       headerName: 'Posibles respuestas',
       field: 'possibleAnswers',
       width: 200,
-      sortable: true
+      sortable: true,
+      cellRendererFramework: AgGridQuestionPossibleAnswersComponent
+    },
+    {
+      headerName: 'Es Requerido',
+      field: 'required',
+      width: 200,
+      sortable: true,
+      cellRendererFramework: AgGridIconComponent,
+      cellRendererParams: {
+        iconName: 'check'
+      }
+    },
+    {
+      headerName: 'Editar',
+      field: 'key',
+      width: 100,
+      sortable: true,
+      cellStyle: {
+        'text-align': 'center',
+      },
+      cellRendererFramework: AgGridIconButtonActionComponent,
+      cellRendererParams: {
+        buttonTitle: 'Editar',
+        iconName: 'edit',
+        validateShowGridButton: (data: QuestionModel) => data.key,
+        onAction: (data: any) => this.editQuestion(data),
+      },
+      pinned: 'right'
+    },
+    {
+      headerName: 'Eliminar',
+      field: 'key',
+      width: 100,
+      sortable: true,
+      cellStyle: {
+        'text-align': 'center',
+      },
+      cellRendererFramework: AgGridIconButtonActionComponent,
+      cellRendererParams: {
+        buttonTitle: 'Eliminar',
+        iconName: 'remove_circle',
+        color: 'warn',
+        validateShowGridButton: (data: QuestionModel) => data.key,
+        onAction: (data: any) => this.goToDeleteQuestion(data),
+      },
+      pinned: 'right'
     }
   ];
 
@@ -71,11 +130,11 @@ export class AddQuestionsComponent implements OnInit, OnDestroy {
       .subscribe(item => {
         this.questionsList = [];
         item.forEach(element => {
-          const x = element.payload.toJSON();
-          x['key'] = element.key;
-          this.questionsList.push(x as QuestionModel);
+          const q = element.payload.toJSON();
+          q['key'] = element.key;
+          this.questionService.changeSection(q['section']);
+          this.questionsList.push(q as QuestionModel);
         });
-        console.log(this.questionsList);
       });
     this.surveyService.currentSurvey
       .pipe(takeUntil(this.unsubscribeAll))
@@ -104,20 +163,36 @@ export class AddQuestionsComponent implements OnInit, OnDestroy {
       this.questionService.changeQuestion(question);
     }
     const dialogRef = this.dialog.open(DialogAddQuestionComponent, {
-      height: '535px',
+      height: '570px',
       width: '600px',
       panelClass: 'mat-dialog-without-padding',
       data: question
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (result.section) {
+        this.questionService.changeSection(result.section);
+      }
       if (result && result.key) {
         this.questionService.updateSurvey((result as QuestionModel));
-      } else {
+      } else if (result) {
         const qs = (result as QuestionModel);
         qs.surveyKey = this.key;
         delete result.captcha;
         this.questionService.saveSurvey(qs);
+      }
+    });
+  }
+
+  goToDeleteQuestion(data: QuestionModel): void {
+    const confirmChangeStatus = this.dialog.open(ConfirmationDialogComponent, {
+      width: '400px',
+      data: {title: 'Eliminar pregunta', question: `¿Desea eliminar esta pregunta?`},
+    });
+
+    confirmChangeStatus.afterClosed().subscribe(result => {
+      if (result) {
+        this.questionService.deleteQuestion(data.key);
       }
     });
   }
