@@ -19,7 +19,9 @@ export class SurveyService {
   }
 
   getSurveys(): AngularFireList<any> {
-    return this.surveyList = this.firebase.list('survey');
+    return this.surveyList = this.firebase.list('survey', ref => {
+      return ref.orderByChild('user').equalTo(this.userService.currentUser.email);
+    });
   }
 
   saveSurvey(survey: SurveyModel): void {
