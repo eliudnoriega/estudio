@@ -2,7 +2,7 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {QuestionModel} from '../../../../models/survey';
-import {QUESTION_TYPES} from '../../../../constants/aplication';
+import {QUESTION_TYPES, SITE_KEY} from '../../../../constants/aplication';
 import {QuestionService} from '../../../../services/question.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
@@ -28,6 +28,7 @@ export class DialogAddQuestionComponent implements OnInit, OnDestroy {
   selectable = true;
   removable = true;
   sectionList = [];
+  siteKey = '';
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   constructor(
@@ -42,6 +43,7 @@ export class DialogAddQuestionComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.questionTypes = QUESTION_TYPES;
     this.initForm();
+    this.siteKey = SITE_KEY;
   }
 
   initForm(): void {
@@ -70,7 +72,8 @@ export class DialogAddQuestionComponent implements OnInit, OnDestroy {
         this.possibleAnswers = true;
         this.possibleAnswersList = [];
         if (this.form.get('questionType').value === 5) {
-          for (let i in this.data.possibleAnswers) {
+          const b: any = this.data.possibleAnswers;
+          for (const i in b) {
             this.possibleAnswersList.push(this.data.possibleAnswers[i]);
           }
         } else {
@@ -132,7 +135,11 @@ export class DialogAddQuestionComponent implements OnInit, OnDestroy {
   }
 
   loadPossibleAnswer(): void {
-    this.form.get('possibleAnswers').setValue(this.possibleAnswersList);
+    if (this.form.get('questionType').value === 5) {
+      this.form.get('possibleAnswers').setValue(this.possibleAnswersList);
+    } else {
+      this.form.get('possibleAnswers').setValue(this.possibleAnswersList.toString());
+    }
   }
 
   resolved(ev): void {

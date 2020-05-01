@@ -45,6 +45,7 @@ export class AddSurveyComponent implements OnInit, OnDestroy {
             surveyType: [survey.surveyType],
             directedPublic: [survey.directedPublic],
             disabledSurvey: [survey.disabledSurvey],
+            questions: [survey.questions],
             captcha: ['', Validators.required]
           });
           this.title = 'Actualizar Encuesta';

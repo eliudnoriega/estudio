@@ -36,7 +36,7 @@ export class AgGridQuestionPossibleAnswersComponent
     } else {
       this.value = params.value.toString();
     }
-
+    console.log(this.value);
   }
 
   refresh(): boolean {

@@ -20,12 +20,15 @@
     </div>
     <div class="content" fxLayout="row">
       <div class="col-sm-3"></div>
-      <div class="col-sm-6">
+      <div class="col-sm-6" *ngIf="!x.disabledSurvey" fxLayoutAlign="center center">
+        <h1>NO YA NO PUEDE RESPONDER ESTE FORMULARIO</h1>
+      </div>
+      <div class="col-sm-6" *ngIf="x.disabledSurvey">
         <form fxLayout="column" [formGroup]="form">
           <div fxLayout="row" fxFlex *ngFor="let field of questionsList">
             <mat-form-field appearance="outline" fxFlex *ngIf="field.questionType===0 || field.questionType===1">
               <mat-label>{{field.question}}</mat-label>
-              <input matInput formControlName="{{field.key}}" type="{{field.type}}" required="{{field.required}}">
+              <input matInput formControlName="{{field.key}}" type="{{field.type}}">
             </mat-form-field>
             <mat-form-field appearance="outline" fxFlex *ngIf="field.questionType===2">
               <mat-label>{{field.question}}</mat-label>
@@ -34,12 +37,45 @@
             </mat-form-field>
             <mat-form-field appearance="outline" fxFlex *ngIf="field.questionType===3">
               <mat-label>{{field.question}}</mat-label>
-              <mat-select formControlName="{{field.key}}" required="{{field.required}}">
+              <mat-select formControlName="{{field.key}}">
                 <mat-option *ngFor="let r of field.possibleAnswers.split(',')">{{r}}</mat-option>
               </mat-select>
             </mat-form-field>
+            <div *ngIf="field.questionType===4" style="height: 40px">
+              <mat-label>{{field.question}}</mat-label>
+              <mat-radio-group aria-label="Select option" formControlName="{{field.key}}"
+                               *ngIf="field.questionType===4">
+                <mat-radio-button *ngFor="let r of field.possibleAnswers.split(',')"
+                                  [value]="r">{{r}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div *ngIf="field.questionType===5" style="height: 40px">
+              <mat-label>{{field.question}}</mat-label>
+              <mat-radio-group aria-label="Select option" formControlName="{{field.key}}"
+                               *ngIf="field.questionType===5">
+                <mat-radio-button style="margin-left: 10px" *ngFor="let r of field.possibleAnswers"
+                                  [value]="r.description">
+                  <div class="example-button-container">
+                    <button mat-mini-fab color="warn" aria-label="plus one icon">
+                      <mat-icon>{{r.icon}}</mat-icon>
+                    </button>
+                  </div>
+                  {{r.description}}
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div fxLayout="row" fxFlex fxLayoutAlign="center center">
+            <re-captcha
+              (resolved)="resolved($event)"
+              required
+              siteKey="{{siteKey}}"
+            ></re-captcha>
           </div>
         </form>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <button class="btn btn-primary btn-simple" (click)="saveForm()" [disabled]="form.invalid">Guardar</button>
+        </div>
       </div>
       <div class="col-sm-3"></div>
     </div>

@@ -5,8 +5,8 @@ import {takeUntil} from 'rxjs/operators';
 import {SurveyService} from '../../../services/survey.service';
 import {QuestionService} from '../../../services/question.service';
 import {Subject} from 'rxjs';
-import {FormGroup, Validators} from '@angular/forms';
-import {QUESTION_TYPES} from '../../../constants/aplication';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {QUESTION_TYPES, SITE_KEY} from '../../../constants/aplication';
 
 @Component({
   selector: 'app-survey-response',
@@ -20,11 +20,14 @@ export class SurveyResponseComponent implements OnInit {
   questionsList: Array<QuestionModel> = [];
   x: SurveyModel = {questions: []};
   form: FormGroup;
+  siteKey = '';
+  sections = [];
 
   constructor(
     private readonly surveyService: SurveyService,
     private readonly questionService: QuestionService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private readonly formBuilder: FormBuilder
   ) {
   }
 
@@ -32,6 +35,11 @@ export class SurveyResponseComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.key = params['key'];
     });
+    const propertiesForm: any = {};
+    propertiesForm.captcha = ['', Validators.required];
+    this.form = this.formBuilder.group(
+      propertiesForm
+    );
     this.questionService.getQuestions(this.key).snapshotChanges()
       .subscribe(item => {
         this.questionsList = [];
@@ -41,14 +49,26 @@ export class SurveyResponseComponent implements OnInit {
           q['type'] = QUESTION_TYPES.filter(r => r.value === q['questionType'])[0].type;
           this.questionService.changeSection(q['section']);
           this.questionsList.push(q as QuestionModel);
-          if (q['questionType'] === 3) {
-            console.log(q);
+          if (q['questionType'] === 5) {
+            const b: any = q['possibleAnswers'];
+            const possAnswerList: any = [];
+            for (const i in b) {
+              possAnswerList.push(q['possibleAnswers'][i]);
+            }
+            q['possibleAnswers'] = possAnswerList;
+            console.log(possAnswerList);
+          }
+          if (q['required']) {
+            propertiesForm[element.key] = ['', Validators.required];
+          } else {
+            propertiesForm[element.key] = [''];
           }
         });
-        this.form = this.formBuilder.group({
-
-          captcha: ['', Validators.required],
-        });
+        this.sections = this.questionsList.map(r => r.section).filter((r, i, self) => self.indexOf(r) === i);
+        console.log(this.sections);
+        this.form = this.formBuilder.group(
+          propertiesForm
+        );
       });
     this.surveyService.currentSurvey
       .pipe(takeUntil(this.unsubscribeAll))
@@ -64,6 +84,15 @@ export class SurveyResponseComponent implements OnInit {
             });
         }
       });
+    this.siteKey = SITE_KEY;
+  }
+
+  resolved(ev): void {
+    this.form.get('captcha').setValue(ev);
+  }
+
+  saveForm(): void {
+    console.log(this.form.value);
   }
 
 }

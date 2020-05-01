@@ -27,6 +27,7 @@ import { DialogIconComponent } from './add-questions/dialog-icon/dialog-icon.com
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCardModule} from '@angular/material/card';
 import { SurveyResponseComponent } from './survey-response/survey-response.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { SurveyResponseComponent } from './survey-response/survey-response.compo
     MatAutocompleteModule,
     MatProgressSpinnerModule,
     MatCardModule,
+    MatRadioModule,
   ],
   entryComponents:[
     LayoutDialogComponent
