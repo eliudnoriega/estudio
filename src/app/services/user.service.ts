@@ -23,19 +23,17 @@ export class UserService {
   }
 
   login() {
-    this.auth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    this.auth.signInWithPopup(new auth.GoogleAuthProvider());
   }
 
   logout() {
-    this.auth.auth.signOut();
+    this.auth.signOut();
   }
 
   saveUser(user: any) {
-    console.log(user);
     const userList = this.firebase.list('user', ref => {
       return ref.orderByChild('email').equalTo(this.currentUser.email);
     });
-    console.log(userList);
     /*userList.push(this.currentUser);*/
   }
 }

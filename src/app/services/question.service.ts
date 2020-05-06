@@ -28,7 +28,8 @@ export class QuestionService {
       possibleAnswers: question.possibleAnswers,
       user: this.userService.currentUser.email,
       required: question.required,
-      section: question.section
+      section: question.section,
+      accept: question.accept
     });
   }
 
@@ -41,7 +42,8 @@ export class QuestionService {
       user: this.userService.currentUser.email,
       key: question.key,
       required: question.required,
-      section: question.section
+      section: question.section,
+      accept: question.accept
     });
   }
 

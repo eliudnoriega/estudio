@@ -19,6 +19,7 @@ import {PortalModule} from '@angular/cdk/portal';
 import {FlexModule} from '@angular/flex-layout';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {AngularFireStorageModule} from '@angular/fire/storage';
 @NgModule({
   declarations: [
     AppComponent
@@ -38,7 +39,8 @@ import {MatIconModule} from '@angular/material/icon';
     PortalModule,
     FlexModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

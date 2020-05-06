@@ -36,8 +36,8 @@ export class AgGridIconButtonActionComponent
   cell: any;
   iconName = 'info';
   buttonTitle = 'Action button';
-  showButton: boolean = true;
-  color: string = 'primary';
+  showButton = true;
+  color = 'primary';
 
   constructor() {}
 
@@ -49,9 +49,9 @@ export class AgGridIconButtonActionComponent
     if (
       this.params.data &&
       this.params.data.id &&
-      this.params['validateShowGridButton']
+      this.params.validateShowGridButton
     ) {
-      const fn = this.params['validateShowGridButton'];
+      const fn = this.params.validateShowGridButton;
       if (fn) {
         this.showButton = fn(this.params.data);
       }
@@ -66,9 +66,9 @@ export class AgGridIconButtonActionComponent
     if (
       this.params.data &&
       this.params.data.id &&
-      this.params['validateTitle']
+      this.params.validateTitle
     ) {
-      const fn = this.params['validateTitle'];
+      const fn = this.params.validateTitle;
       if (fn) {
           this.buttonTitle = this.params.data;
       }
@@ -77,9 +77,9 @@ export class AgGridIconButtonActionComponent
     if (
       this.params.data &&
       this.params.data.id &&
-      this.params['validateIcon']
+      this.params.validateIcon
     ) {
-      const fn = this.params['validateIcon'];
+      const fn = this.params.validateIcon;
       if (fn) {
         this.iconName = fn(this.params.data);
       }
@@ -103,7 +103,7 @@ export class AgGridIconButtonActionComponent
 
   onClick(): void {
     if (this.params) {
-      const fn = this.params['onAction'];
+      const fn = this.params.onAction;
       if (fn) {
         fn(this.params.data);
       }

@@ -21,10 +21,10 @@
     <div class="content" fxLayout="row">
       <div class="col-sm-3"></div>
       <div class="col-sm-6" *ngIf="!x.disabledSurvey" fxLayoutAlign="center center">
-        <h1>NO YA NO PUEDE RESPONDER ESTE FORMULARIO</h1>
+        <h1>YA NO PUEDE RESPONDER ESTE FORMULARIO</h1>
       </div>
       <div class="col-sm-6" *ngIf="x.disabledSurvey">
-        <form fxLayout="column" [formGroup]="form">
+        <form fxLayout="column" [formGroup]="form" style="color:white">
           <div fxLayout="row" fxFlex *ngFor="let field of questionsList">
             <mat-form-field appearance="outline" fxFlex *ngIf="field.questionType===0 || field.questionType===1">
               <mat-label>{{field.question}}</mat-label>
@@ -41,12 +41,14 @@
                 <mat-option *ngFor="let r of field.possibleAnswers.split(',')">{{r}}</mat-option>
               </mat-select>
             </mat-form-field>
-            <div *ngIf="field.questionType===4" style="height: 40px">
+            <div *ngIf="field.questionType===4" style="height: 40px; margin:10px">
               <mat-label>{{field.question}}</mat-label>
               <mat-radio-group aria-label="Select option" formControlName="{{field.key}}"
-                               *ngIf="field.questionType===4">
-                <mat-radio-button *ngFor="let r of field.possibleAnswers.split(',')"
-                                  [value]="r">{{r}}</mat-radio-button>
+                               *ngIf="field.questionType===4" fxLayoutAlign="space-around">
+                <div fxLayout="row" fxLayoutAlign="space-around center">
+                  <mat-radio-button style="margin: 10px" *ngFor="let r of field.possibleAnswers.split(',')"
+                                    [value]="r">{{r}}</mat-radio-button>
+                </div>
               </mat-radio-group>
             </div>
             <div *ngIf="field.questionType===5" style="height: 40px">
@@ -63,6 +65,18 @@
                   {{r.description}}
                 </mat-radio-button>
               </mat-radio-group>
+            </div>
+            <div fxFlex *ngIf="field.questionType===6">
+              <mat-label style="color: white">{{field.question}}</mat-label>
+              <div fxLayout="row">
+                <mat-checkbox style="margin: 10px" *ngFor="let r of field.possibleAnswers.split(',')"
+                              (change)="addCheckValue(field.key, r, $event)">{{r}}</mat-checkbox>
+              </div>
+            </div>
+            <div fxFlex *ngIf="field.questionType===9">
+              <label style="margin:15px; color: white; font-size: 12px">{{field.question}}</label>
+              <input formControlName="{{field.key}}" type="{{field.type}}"
+                     required="{{field.required}}" accept="{{field.accept}}" (change)="uploadFile($event)"/>
             </div>
           </div>
           <div fxLayout="row" fxFlex fxLayoutAlign="center center">

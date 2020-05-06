@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {AddSurveyComponent} from './add-survey/add-survey.component';
 import {MatDialog} from '@angular/material/dialog';
 import {ProductService} from '../../services/product.service';
-import {Product} from '../../models/product';
 import {SurveyService} from '../../services/survey.service';
 import {SurveyModel} from '../../models/survey';
 import {SURVEY_TYPES} from '../../constants/aplication';
@@ -57,6 +56,7 @@ export class SurveyComponent implements OnInit {
 
   addQuestions(survey: SurveyModel): void {
     this.surveyService.changeSurvey(survey);
+    this.surveyService.updateSurvey(survey);
     this.router.navigate(['addQuestions', survey.key]);
   }
 

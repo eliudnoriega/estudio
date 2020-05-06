@@ -60,6 +60,23 @@
           </mat-chip-list>
         </mat-form-field>
       </div>
+      <div fxLayout="row" fxFlex *ngIf="acceptFiles">
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Tipos de Archivos</mat-label>
+          <mat-chip-list #chipList aria-label="selection">
+            <mat-chip *ngFor="let r of acceptList" [selectable]="selectable"
+                      [removable]="removable" (removed)="removeAcceptFiles(r)">
+              <span>{{r}}</span>
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Agregar Tipo de Archivo..."
+                   [matChipInputFor]="chipList"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]="true"
+                   (matChipInputTokenEnd)="addAcceptFiles($event)">
+          </mat-chip-list>
+        </mat-form-field>
+      </div>
       <div fxLayout="row" fxFlex fxLayoutAlign="center center">
         <div fxLayout="row" fxFlex>
           <mat-slide-toggle formControlName="required">Es Requerido</mat-slide-toggle>

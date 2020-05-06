@@ -1,15 +1,16 @@
 {
-  "name": "blk-design-system-angular",
+  "name": "estudio",
   "version": "1.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "description": "BLK Design System Angular: Free Angular Design System For Bootstrap 4 and Angular",
+    "description": "Sistema de encuestas o formularios and Angular",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+    "audit:fix": "audit fix"
   },
   "repository": {
     "type": "git",
@@ -68,6 +69,7 @@
     "@angular/common": "9.0.6",
     "@angular/compiler": "9.0.6",
     "@angular/core": "9.0.6",
+    "@angular/fire": "^6.0.0",
     "@angular/flex-layout": "^9.0.0-beta.29",
     "@angular/forms": "9.0.6",
     "@angular/material": "^9.2.0",
@@ -75,10 +77,12 @@
     "@angular/platform-browser-dynamic": "9.0.6",
     "@angular/router": "9.0.6",
     "angularfire2": "^5.4.2",
+    "audit": "0.0.6",
     "chart.js": "2.8.0",
     "core-js": "3.2.1",
-    "firebase": "^7.14.0",
+    "firebase": "^7.14.2",
     "firebase-tools": "^8.1.0",
+    "fix": "0.0.6",
     "jw-bootstrap-switch-ng2": "2.0.5",
     "material-design-icons": "^3.0.1",
     "ng-recaptcha": "^5.0.0",

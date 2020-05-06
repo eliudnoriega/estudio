@@ -24,7 +24,9 @@ export class DialogAddQuestionComponent implements OnInit, OnDestroy {
   form: FormGroup;
   questionTypes;
   possibleAnswers = false;
+  acceptFiles = false;
   possibleAnswersList: any = [];
+  acceptList: any = [];
   selectable = true;
   removable = true;
   sectionList = [];
@@ -51,6 +53,7 @@ export class DialogAddQuestionComponent implements OnInit, OnDestroy {
       question: ['', Validators.required],
       questionType: ['', Validators.required],
       possibleAnswers: [''],
+      accept: [''],
       required: [''],
       section: ['', Validators.required],
       captcha: ['', Validators.required],
@@ -62,6 +65,7 @@ export class DialogAddQuestionComponent implements OnInit, OnDestroy {
         question: [this.data.question, Validators.required],
         questionType: [this.data.questionType, Validators.required],
         possibleAnswers: [this.data.possibleAnswers],
+        accept: [this.data.accept],
         section: [this.data.section, Validators.required],
         key: [this.data.key],
         surveyKey: [this.data.surveyKey],
@@ -80,6 +84,11 @@ export class DialogAddQuestionComponent implements OnInit, OnDestroy {
           this.possibleAnswersList = this.data.possibleAnswers.split(',');
         }
       }
+      if (this.data.accept) {
+        this.acceptFiles = true;
+        this.acceptList = [];
+        this.acceptList = this.data.accept.split(',');
+      }
     }
     this.questionService.currentSection
       .pipe(takeUntil(this.unsubscribeAll))
@@ -94,7 +103,7 @@ export class DialogAddQuestionComponent implements OnInit, OnDestroy {
   }
 
   verifyPossibleAnswers(): void {
-    this.possibleAnswers = this.questionTypes.filter(r => r.value === this.form.controls['questionType'].value)[0].possibleAnswers;
+    this.possibleAnswers = this.questionTypes.filter(r => r.value === this.form.controls.questionType.value)[0].possibleAnswers;
     if (this.possibleAnswers) {
       this.form.get('possibleAnswers').setValidators(Validators.required);
       this.form.get('possibleAnswers').updateValueAndValidity();
@@ -104,6 +113,16 @@ export class DialogAddQuestionComponent implements OnInit, OnDestroy {
       this.form.get('possibleAnswers').clearValidators();
       this.form.get('possibleAnswers').updateValueAndValidity();
     }
+    this.acceptFiles = this.questionTypes.filter(r => r.value === this.form.controls.questionType.value)[0].acceptFiles;
+    if (this.acceptFiles) {
+      this.form.get('accept').setValidators(Validators.required);
+      this.form.get('accept').updateValueAndValidity();
+    } else {
+      this.form.get('accept').setValue('');
+      this.form.get('accept').setValidators(null);
+      this.form.get('accept').clearValidators();
+      this.form.get('accept').updateValueAndValidity();
+    }
   }
 
   removePossibleAnswer(r: any): void {
@@ -111,6 +130,14 @@ export class DialogAddQuestionComponent implements OnInit, OnDestroy {
     if (index >= 0) {
       this.possibleAnswersList.splice(index, 1);
       this.loadPossibleAnswer();
+    }
+  }
+
+  removeAcceptFiles(r: any): void {
+    const index = this.acceptList.indexOf(r);
+    if (index >= 0) {
+      this.acceptList.splice(index, 1);
+      this.loadAcceptFiles();
     }
   }
 
@@ -134,12 +161,33 @@ export class DialogAddQuestionComponent implements OnInit, OnDestroy {
     }
   }
 
+  addAcceptFiles(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.acceptList.push(value.trim());
+
+      this.loadAcceptFiles();
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
   loadPossibleAnswer(): void {
     if (this.form.get('questionType').value === 5) {
       this.form.get('possibleAnswers').setValue(this.possibleAnswersList);
     } else {
       this.form.get('possibleAnswers').setValue(this.possibleAnswersList.toString());
     }
+  }
+
+  loadAcceptFiles(): void {
+    this.form.get('accept').setValue(this.acceptList.toString());
   }
 
   resolved(ev): void {

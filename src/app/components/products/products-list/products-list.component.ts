@@ -102,7 +102,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
         this.products = [];
         item.forEach(element => {
           const x = element.payload.toJSON();
-          x['key'] = element.key;
+          x.key = element.key;
           this.products.push(x as Product);
         });
       });

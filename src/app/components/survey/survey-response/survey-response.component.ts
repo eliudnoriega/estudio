@@ -7,6 +7,7 @@ import {QuestionService} from '../../../services/question.service';
 import {Subject} from 'rxjs';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {QUESTION_TYPES, SITE_KEY} from '../../../constants/aplication';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-survey-response',
@@ -27,13 +28,14 @@ export class SurveyResponseComponent implements OnInit {
     private readonly surveyService: SurveyService,
     private readonly questionService: QuestionService,
     private activatedRoute: ActivatedRoute,
-    private readonly formBuilder: FormBuilder
+    private readonly formBuilder: FormBuilder,
+    private readonly userService: UserService
   ) {
   }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.key = params['key'];
+      this.key = params.key;
     });
     const propertiesForm: any = {};
     propertiesForm.captcha = ['', Validators.required];
@@ -89,6 +91,27 @@ export class SurveyResponseComponent implements OnInit {
 
   resolved(ev): void {
     this.form.get('captcha').setValue(ev);
+  }
+
+  addCheckValue(key: string, value: string, ev: any): void {
+    setTimeout(() => {
+      if (value && this.form.controls[key].value && ev.checked) {
+        this.form.get(key).setValue(this.form.controls[key].value + ',' + value);
+      } else if (value && this.form.controls[key].value && !ev.checked) {
+        const arr = this.form.controls[key].value.split(',');
+        const i = arr.indexOf(value);
+        arr.splice(i, 1);
+        this.form.get(key).setValue(arr.toString());
+      } else {
+        this.form.get(key).setValue(value);
+      }
+    }, 200);
+  }
+
+  uploadFile(ev: any): void {
+    if(ev.target && ev.target.files){
+      console.log(ev.target.files);
+    }
   }
 
   saveForm(): void {
