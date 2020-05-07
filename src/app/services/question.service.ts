@@ -26,6 +26,7 @@ export class QuestionService {
       questionType: question.questionType,
       surveyKey: question.surveyKey,
       possibleAnswers: question.possibleAnswers,
+      accept: question.accept,
       user: this.userService.currentUser.email,
       required: question.required,
       section: question.section
@@ -38,6 +39,7 @@ export class QuestionService {
       questionType: question.questionType,
       surveyKey: question.surveyKey,
       possibleAnswers: question.possibleAnswers,
+      accept: question.accept,
       user: this.userService.currentUser.email,
       key: question.key,
       required: question.required,

@@ -33,7 +33,7 @@ export class AgGridQuestionPossibleAnswersComponent
       for (const i in params.value) {
         this.value += params.value[i].description + ',';
       }
-    } else {
+    } else if (params.value) {
       this.value = params.value.toString();
     }
     console.log(this.value);

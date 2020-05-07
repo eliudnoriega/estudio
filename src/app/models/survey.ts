@@ -18,4 +18,5 @@ export class QuestionModel {
   section: string;
   required: boolean;
   type: string;
+  accept: string;
 }

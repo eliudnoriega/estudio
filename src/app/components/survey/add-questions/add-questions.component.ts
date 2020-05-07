@@ -66,6 +66,13 @@ export class AddQuestionsComponent implements OnInit, OnDestroy {
       cellRendererFramework: AgGridQuestionPossibleAnswersComponent
     },
     {
+      headerName: 'Tipos de Archivos',
+      field: 'accept',
+      width: 200,
+      sortable: true,
+      cellRendererFramework: AgGridQuestionPossibleAnswersComponent
+    },
+    {
       headerName: 'Es Requerido',
       field: 'required',
       width: 200,

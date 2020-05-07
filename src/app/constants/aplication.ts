@@ -15,9 +15,10 @@ export const QUESTION_TYPES = [
   {value: 3, text: 'Lista desplegable', type: 'select', possibleAnswers: true},
   {value: 4, text: 'Opciones', type: 'option', possibleAnswers: true},
   {value: 6, text: 'Check', type: 'check', possibleAnswers: true},
-  {value: 7, text: 'Tabla1', type: 'table'},
-  {value: 8, text: 'Tabla2', type: 'table2'},
+  {value: 9, text: 'Archivo', type: 'file', acceptFiles: true},
 ];
 //{value: 5, text: 'Opciones Con Iconos', type: 'optionIcons', possibleAnswers: true},
+/*{value: 7, text: 'Tabla1', type: 'table'},
+{value: 8, text: 'Tabla2', type: 'table2'},*/
 
 export const SITE_KEY = '6Le5Ge0UAAAAAAWZm5jYWea8KsbnqR0ssYIo9RSP';
